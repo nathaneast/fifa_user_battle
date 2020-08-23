@@ -22,6 +22,7 @@ function Home() {
     setIsViewBattle(false);
     setUserName1('');
     setUserName2('');
+    setMessage('');
   }
 
   const handleChange = (e, user) => {
