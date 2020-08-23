@@ -14,4 +14,16 @@ export const fifaAPI = {
     .catch(error => {
       console.log(error);
     }),
+  userRating: userId => fifa.get(`users/${userId}/maxdivision`)
+    .catch(error => {
+      console.log(error);
+    }),
+  userMatch: (userID, matchType) => fifa.get(`users/${userID}/matches?matchtype=${matchType}&limit=5`)
+    .catch(error => {
+      console.log(error);
+    }),
+  matchDetail: matchId => fifa.get(`matches/${matchId}`)
+    .catch(error => {
+      console.log(error);
+    })
 }
