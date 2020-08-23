@@ -1,4 +1,5 @@
 import { fifaAPI } from '../api';
+import { useSelector } from 'react-redux';
 
 export const processUserMatch = async matchs => {
   let victory = 0;
@@ -32,15 +33,15 @@ export const processUserMatch = async matchs => {
 
   return {
       matchResult: `${victory}승 ${draw}무 ${defeat}패`,
-      averageGoal: `${(goalTotal / 5).toFixed(1)}골`
+      averageGoal: `${goalTotal ? (goalTotal / 5).toFixed(1) : 0}골`
   }
 }
 
-export const processDivision = async (divisions, userId) => {
+export const processDivision = async divisions => {
   let result = {};
 
   if (!divisions.length) {
-    return;
+    return result;
   }
 
   divisions.forEach((item, index) => {
@@ -64,3 +65,36 @@ export const processDivision = async (divisions, userId) => {
 
   return result;
 }
+
+// export const aaa = () => {
+//   const {
+//     name: name1,
+//     level: level1,
+//     division: division1,
+//     match: match1
+//   } = useSelector(selectUser1);
+
+//   name: PropTypes.string,
+//   level: PropTypes.number,
+//   division: PropTypes.shape({
+//     official: PropTypes.shape({
+//       date: PropTypes.string,
+//       division: PropTypes.number,
+//     }),
+//     practice: PropTypes.shape({
+//       date: PropTypes.string,
+//       division: PropTypes.number,
+//     }),
+//   }),
+//   match: PropTypes.shape({
+//     official: PropTypes.shape({
+//       averageGoal: PropTypes.string,
+//       matchResult: PropTypes.string,
+//     }),
+//     practice: PropTypes.shape({
+//       averageGoal: PropTypes.string,
+//       matchResult: PropTypes.string,
+//     }),
+//   }),
+//   anyUser: PropTypes.number,
+// }

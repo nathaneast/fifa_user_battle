@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import { update, selectUser1, selectUser2 } from './HomeSlice';
+import { update, reset } from './HomeSlice';
 import { fifaAPI } from '../../api';
 import { processUserMatch, processDivision } from '../../utils/helper';
 
@@ -12,13 +12,17 @@ import Battle from '../../components/Battle';
 function Home() {
   const [userName1, setUserName1] = useState('');
   const [userName2, setUserName2] = useState('');
-  const [message, setMessage] = useState(null);
-  const [viewBattle, setViewBattle] = useState(false);
+  const [message, setMessage] = useState('');
+  const [isViewBattle, setIsViewBattle] = useState(false);
 
   const dispatch = useDispatch();
-  // const u1 = useSelector(selectUser1)
-  // const u2 = useSelector(selectUser2)
-  // console.log(u1, u2)
+
+  const resetUserData = () => {
+    dispatch(reset());
+    setIsViewBattle(false);
+    setUserName1('');
+    setUserName2('');
+  }
 
   const handleChange = (e, user) => {
     user === 'user1' ? setUserName1(e.target.value) : setUserName2(e.target.value);
@@ -102,25 +106,23 @@ function Home() {
       },
     ]));
 
-    setViewBattle(true);
+    setIsViewBattle(true);
   }
 
   return (
     <>
-      {viewBattle ? (
+      {isViewBattle ? (
         <Battle
-          handleClose={setViewBattle}
+          handleClose={resetUserData}
         />
       ) : (
-          <>
-            <InputBar
-              user1={userName1}
-              user2={userName2}
-              handleSubmit={handleSubmit}
-              handleChange={handleChange}
-            />
-            <Message text={message} />
-          </>
+          <InputBar
+            user1={userName1}
+            user2={userName2}
+            handleSubmit={handleSubmit}
+            handleChange={handleChange}
+            message={message}
+          />
         )}
     </>
   );
