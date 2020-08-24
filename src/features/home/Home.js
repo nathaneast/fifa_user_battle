@@ -6,14 +6,15 @@ import { fifaAPI } from '../../api';
 import { processUserMatch, processDivision } from '../../utils/helper';
 
 import InputBar from '../../components/InputBar';
-import Message from '../../components/Message';
 import Battle from '../../components/Battle';
+import Loader from '../../components/Loader';
 
 function Home() {
   const [userName1, setUserName1] = useState('');
   const [userName2, setUserName2] = useState('');
   const [message, setMessage] = useState('');
   const [isViewBattle, setIsViewBattle] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -58,6 +59,8 @@ function Home() {
     } else {
       const { data: userData1 } = userReult1;
       const { data: userData2 } = userReult2;
+      setIsLoading(true);
+      setIsViewBattle(true);
       getUserData(userData1, userData2);
     }
   }
@@ -107,15 +110,21 @@ function Home() {
       },
     ]));
 
-    setIsViewBattle(true);
+    setIsLoading(false);
   }
 
   return (
     <>
       {isViewBattle ? (
-        <Battle
-          handleClose={resetUserData}
-        />
+        <>
+          {isLoading ? (
+            <Loader />
+          ) : (
+              <Battle
+                handleClose={resetUserData}
+              />
+            )}
+        </>
       ) : (
           <InputBar
             user1={userName1}
