@@ -53,11 +53,11 @@ function Battle({ handleClose }) {
     <Container>
       <BattleBoard>
         <ImageContainer>
-          <Image src={require('../images/bayern_munchen.png')} alt='userPoser1'></Image>
+          <Image src={require('../images/bayern_munchen.png')} alt='userPoster1'></Image>
         </ImageContainer>
         <BattleBetween>VS</BattleBetween>
         <ImageContainer>
-          <Image src={require('../images/psg.png')} alt='userPoser2'></Image>
+          <Image src={require('../images/psg.png')} alt='userPoster2'></Image>
         </ImageContainer>
       </BattleBoard>
 

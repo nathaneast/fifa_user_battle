@@ -1,5 +1,4 @@
 import { fifaAPI } from '../api';
-import { useSelector } from 'react-redux';
 
 export const processUserMatch = async matchs => {
   let victory = 0;
@@ -65,36 +64,3 @@ export const processDivision = async divisions => {
 
   return result;
 }
-
-// export const aaa = () => {
-//   const {
-//     name: name1,
-//     level: level1,
-//     division: division1,
-//     match: match1
-//   } = useSelector(selectUser1);
-
-//   name: PropTypes.string,
-//   level: PropTypes.number,
-//   division: PropTypes.shape({
-//     official: PropTypes.shape({
-//       date: PropTypes.string,
-//       division: PropTypes.number,
-//     }),
-//     practice: PropTypes.shape({
-//       date: PropTypes.string,
-//       division: PropTypes.number,
-//     }),
-//   }),
-//   match: PropTypes.shape({
-//     official: PropTypes.shape({
-//       averageGoal: PropTypes.string,
-//       matchResult: PropTypes.string,
-//     }),
-//     practice: PropTypes.shape({
-//       averageGoal: PropTypes.string,
-//       matchResult: PropTypes.string,
-//     }),
-//   }),
-//   anyUser: PropTypes.number,
-// }

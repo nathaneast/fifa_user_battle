@@ -59,8 +59,8 @@ function Home() {
     } else {
       const { data: userData1 } = userReult1;
       const { data: userData2 } = userReult2;
-      setIsLoading(true);
       setIsViewBattle(true);
+      setIsLoading(true);
       getUserData(userData1, userData2);
     }
   }
